@@ -5,7 +5,7 @@ document.getElementById("scanBtn").addEventListener("click", () => {
     chrome.scripting.executeScript({
       target: { tabId: tabs[0].id },
       func: () => document.body.innerText
-    }, (results) => {
+    }, results => {
       storyText = results[0].result;
       document.getElementById("status").innerText = "✅ Scanning complete. Press Next.";
     });
@@ -13,19 +13,18 @@ document.getElementById("scanBtn").addEventListener("click", () => {
 });
 
 document.getElementById("nextBtn").addEventListener("click", () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-    chrome.scripting.executeScript({
-      target: { tabId: tabs[0].id },
-      func: () => Array.from(document.querySelectorAll(".question")).map(q => q.innerText)
-    }, (results) => {
-      const questions = results[0].result;
-      chrome.runtime.sendMessage({ action: "sendToAI", payload: { story: storyText, questions } });
-      document.getElementById("status").innerText = "🔍 Processing answers...";
-    });
-  });
+  chrome.tabs.sendMessage(tabs[0].id, { action: "getQuestions" });
 });
 
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+  if (req.action === "triggerAI") {
+    chrome.runtime.sendMessage({
+      action: "sendToAI",
+      payload: { story: storyText, questions: req.questions }
+    });
+    document.getElementById("status").innerText = "🔍 Getting answers...";
+  }
+
   if (req.action === "displayAnswers") {
     const qaDiv = document.getElementById("qaBlock");
     qaDiv.innerHTML = "";
@@ -49,6 +48,7 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
       block.appendChild(ul);
       qaDiv.appendChild(block);
     });
-    document.getElementById("status").innerText = "✅ Answers loaded. Select an option.";
+    document.getElementById("status").innerText = "✅ Answers ready. Choose your response.";
   }
 });
+
