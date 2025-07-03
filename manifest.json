@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Turbo x2 Extension",
+  "version": "1.0",
+  "description": "Smart Q&A powered by Groq, Cohere, and Gemini.",
+  "permissions": ["scripting", "storage", "activeTab"],
+  "host_permissions": ["https://*/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://sparxreader.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
