@@ -1,23 +1,29 @@
 body {
-  font-family: Arial, sans-serif;
-  padding: 15px;
+  background-color: #0a1f3d;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 16px;
 }
 
 button {
-  margin: 5px;
-  padding: 5px 10px;
+  background-color: #1e3d7a;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin: 8px 0;
   font-size: 14px;
+  border-radius: 4px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-#status {
-  margin-top: 10px;
-  font-weight: bold;
+button:hover {
+  background-color: #2f4fa0;
 }
 
 .question-block {
-  margin-top: 20px;
-  background: #f0f0f0;
+  background-color: #152d57;
   padding: 10px;
-  border-radius: 5px;
+  margin-top: 12px;
+  border-radius: 6px;
 }
