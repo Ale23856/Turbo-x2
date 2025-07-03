@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Turbo x2 Extension",
+  "name": "Turbo x2",
   "version": "1.0",
-  "description": "Smart Q&A powered by Groq, Cohere, and Gemini.",
+  "description": "AI-powered Sparx Reader question assistant",
   "permissions": ["scripting", "storage", "activeTab"],
   "host_permissions": ["https://*/*"],
   "action": {
