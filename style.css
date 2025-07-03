@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 15px;
+}
+
+button {
+  margin: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#status {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.question-block {
+  margin-top: 20px;
+  background: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+}
